@@ -1,5 +1,6 @@
 import Vue from 'nativescript-vue';
 import VueRouter from 'vue-router';
+import * as appSettings from "application-settings";
 
 Vue.use(VueRouter);
 
@@ -44,6 +45,21 @@ const router = new VueRouter({
   ],
 });
 
-router.replace('/home');
+router.beforeEach((to, from, next) => {
+  if (to) {
+    appSettings.setString('location', to.fullPath)
+  }
+
+  next()
+})
+
+const prevLoc = appSettings.getString('location')
+if(prevLoc){
+  router.replace(prevLoc);
+} else {
+  router.replace('/home');
+}
+
+
 
 module.exports = router;
