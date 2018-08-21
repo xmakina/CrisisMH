@@ -14,6 +14,10 @@ import Notes from '../components/notes/Notes'
 import ManageNote from '../components/notes/ManageNote'
 import AddNote from '../components/notes/AddNote'
 
+import Library from '../components/library/Library'
+import ManageItem from '../components/library/ManageItem'
+import AddItem from '../components/library/AddItem'
+
 import ErrorPage from '../components/Error'
 
 const router = new VueRouter({
@@ -75,8 +79,29 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/items',
+      component: Library,
+      meta: {
+        title: 'Library',
+      }
+    },
+    {
+      path: '/items/add',
+      component: AddItem,
+      meta: {
+        title: 'Add Item',
+      }
+    },
+    {
+      path: '/items/:index',
+      component: ManageItem,
+      meta: {
+        title: 'Manage Item',
+      }
+    },
+    {
       path: '*',
-      redirect: '/error'
+      component: ErrorPage
     },
   ],
 });
