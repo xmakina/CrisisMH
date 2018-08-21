@@ -6,6 +6,8 @@ Vue.use(VueRouter);
 
 import Home from '../components/Home';
 import Contacts from '../components/Contacts'
+import ManageContact from '../components/ManageContact'
+import AddContact from '../components/AddContact'
 import ErrorPage from '../components/Error'
 
 const router = new VueRouter({
@@ -28,14 +30,21 @@ const router = new VueRouter({
       path: '/contacts',
       component: Contacts,
       meta: {
-        title: 'Contacts',
+        title: 'Crisis Assistants',
       }
     },
     {
       path: '/contacts/add',
-      component: Contacts,
+      component: AddContact,
       meta: {
-        title: 'Add Contact',
+        title: 'Add Crisis Assistant',
+      }
+    },
+    {
+      path: '/contacts/:index',
+      component: ManageContact,
+      meta: {
+        title: 'Manage Crisis Assistant',
       }
     },
     {
