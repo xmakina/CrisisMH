@@ -4,7 +4,7 @@
 
     <StackLayout>
       <Button class="btn btn-primary" @tap="$router.push('/contacts')">Contacts</Button>
-      <Button class="btn btn-primary" @tap="$router.push('/hello')">Hello World</Button>
+      <Button class="btn btn-primary" @tap="$router.push('/notes')">Notes</Button>
     </StackLayout>
 
   </Page>

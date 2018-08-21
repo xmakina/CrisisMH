@@ -3,13 +3,11 @@
         <ActionBar class="action-bar" title="Crisis Assitant">
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" @tap="$router.push('/contacts')" />
         </ActionBar>
-        <StackLayout>
-            <StackLayout>
-                <TextField v-model="name" hint="Name" />
-                <TextField v-model="number" hint="Number" keyboardType="phone" />
-                <Button class="btn btn-primary" @tap="updateContact" text="Update assistant" />
-                <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove assistant" />
-            </StackLayout>
+        <StackLayout class="details">
+            <TextField v-model="name" hint="Name" />
+            <TextField v-model="number" hint="Number" keyboardType="phone" />
+            <Button class="btn btn-primary" @tap="updateContact" text="Update assistant" />
+            <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove assistant" />
         </StackLayout>
     </Page>
 </template>
@@ -55,5 +53,9 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .details {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 </style>
