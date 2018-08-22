@@ -16,6 +16,9 @@
 
 <script>
     import * as appSettings from "application-settings";
+    import * as TNSPhone from 'nativescript-phone';
+    import * as permissions from "nativescript-permissions";
+
     export default {
         data() {
             return {
@@ -32,6 +35,20 @@
                         number: this.number
                     })
                     appSettings.setString('contacts', JSON.stringify(contacts))
+
+                    permissions.requestPermission(android.Manifest.permission.SEND_SMS, "Permission Needed To Send SMS")
+                        .then(() => {
+                            TNSPhone.sms([this.number], "Hello! I have added you as a trusted person I can contact in the event of a crisis using CrisisMH. Please let me know if you want to be removed from this list. This message was sent automatically by CrisisMH.")
+                                .then((args) => {
+                                    console.log(JSON.stringify(args));
+                                }, (err) => {
+                                    console.log('Error: ' + err);
+                                });
+                        })
+                        .catch((e) => {
+                            console.log(JSON.stringify(e));
+                        });
+
 
                     this.$router.push('/contacts/' + (newLength - 1))
                 }
