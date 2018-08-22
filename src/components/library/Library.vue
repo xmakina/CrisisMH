@@ -4,11 +4,14 @@
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" @tap="$router.push('/home')" />
         </ActionBar>
         <StackLayout class="items">
-            <GridLayout columns="33%, 33%, 33%" rows="auto">
-                <Image v-for="(item, index) in items" :key="item.number" @tap="manageItem(index)" :src="item.file._android"
-                />
-            </GridLayout>
-
+            <ListView id="listview" for="item in items" height="80%" @itemTap="manageItem">
+                <v-template>
+                    <StackLayout orientation="horizontal">
+                        <Image :src="item.file._android" height="80px" />
+                        <Label :text="item.title" />
+                    </StackLayout>
+                </v-template>
+            </ListView>
             <Button class="btn btn-primary" @tap="$router.push('/items/add')" text="Add item" />
         </StackLayout>
     </Page>
@@ -24,8 +27,8 @@
             }
         },
         methods: {
-            manageItem(number) {
-                this.$router.push('/items/' + number)
+            manageItem(event) {
+                this.$router.push('/items/' + event.index)
             }
         },
         mounted() {

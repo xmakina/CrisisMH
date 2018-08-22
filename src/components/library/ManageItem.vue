@@ -4,9 +4,8 @@
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" @tap="$router.push('/items')" />
         </ActionBar>
         <StackLayout class="details">
-            <TextField v-model="author" hint="Author" />
             <TextField v-model="title" hint="Title" />
-            <TextView v-model="content" hint="Item" />
+            <Image :src="file._android" hint="Item" />
             <Button class="btn btn-primary" @tap="updateItem" text="Update item" />
             <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove item" />
         </StackLayout>
@@ -19,17 +18,15 @@
     export default {
         data() {
             return {
-                author: '',
                 title: '',
-                content: ''
+                file: ''
             }
         },
         methods: {
             updateItem() {
                 const items = JSON.parse(appSettings.getString('items') || '[]')
-                items[this.$route.params.index].author = this.author
                 items[this.$route.params.index].title = this.title
-                items[this.$route.params.index].content = this.content
+                items[this.$route.params.index].file = this.file
                 appSettings.setString('items', JSON.stringify(items))
                 
                 this.$router.push('/items')
@@ -50,9 +47,8 @@
             const items = JSON.parse(appSettings.getString('items') || '[]')
             const item = items[this.$route.params.index]
 
-            this.author = item.author
             this.title = item.title
-            this.content = item.content
+            this.file = item.file
         }
     }
 </script>
