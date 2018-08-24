@@ -7,6 +7,7 @@
             <TextField v-model="author" hint="Author" />
             <TextField v-model="title" hint="Title" />
             <TextView v-model="content" hint="Note" />
+            <CrisisTypeList @updated="updateCrisisTypes" />
             <Button class="btn btn-primary" @tap="updateNote" text="Update note" />
             <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove note" />
         </StackLayout>
@@ -21,10 +22,14 @@
             return {
                 author: '',
                 title: '',
-                content: ''
+                content: '',
+                crisisTypes: []
             }
         },
         methods: {
+            updateCrisisTypes(newTypes) {
+                this.crisisTypes = newTypes
+            },
             updateNote() {
                 const notes = JSON.parse(appSettings.getString('notes') || '[]')
                 notes[this.$route.params.index].author = this.author
