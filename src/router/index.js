@@ -18,6 +18,10 @@ import Library from '../components/library/Library'
 import ManageItem from '../components/library/ManageItem'
 import AddItem from '../components/library/AddItem'
 
+import Types from '../components/types/Types'
+import ManageType from '../components/types/ManageType'
+import AddType from '../components/types/AddType'
+
 import ErrorPage from '../components/Error'
 
 const router = new VueRouter({
@@ -100,6 +104,27 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/types',
+      component: Types,
+      meta: {
+        title: 'Types'
+      }
+    },
+    {
+      path: '/types/add',
+      component: AddType,
+      meta: {
+        title: 'Add Type'
+      }
+    },
+    {
+      path: '/types/:index',
+      component: ManageType,
+      meta: {
+        title: 'Manage Type',
+      }
+    },
+    {
       path: '*',
       component: ErrorPage
     },
@@ -115,7 +140,7 @@ router.beforeEach((to, from, next) => {
 })
 
 const prevLoc = appSettings.getString('location')
-if(prevLoc){
+if (prevLoc) {
   router.replace(prevLoc);
 } else {
   router.replace('/home');
