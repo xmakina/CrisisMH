@@ -3,14 +3,14 @@
         <ActionBar class="action-bar" title="Types">
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" @tap="$router.push('/home')" />
         </ActionBar>
-        <StackLayout class="types">
-            <StackLayout v-for="(type, index) in types" :key="type.number" class="type"
-                @tap="manageType(index)">
-                
-                <Label class="h4" textWrap=true :text="type.title" />
+        <StackLayout>
+            <StackLayout class="types">
+                <Button class="btn btn-primary"  @tap="$router.push('/types/add')" text="Add type" />
+                <StackLayout v-for="(type, index) in types" :key="type.title" orientation="horizontal" class="type"
+                    @tap="manageType(index)">
+                    <Label class="h2 text-left" textWrap=true width="100%" :text="type.title" />
+                </StackLayout>
             </StackLayout>
-
-            <Button class="btn btn-primary"  @tap="$router.push('/types/add')" text="Add type" />
         </StackLayout>
     </Page>
 </template>
