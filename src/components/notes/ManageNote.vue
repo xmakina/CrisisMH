@@ -21,10 +21,14 @@
             return {
                 author: '',
                 title: '',
-                content: ''
+                content: '',
+                crisisTypes: []
             }
         },
         methods: {
+            updateCrisisTypes(newTypes) {
+                this.crisisTypes = newTypes
+            },
             updateNote() {
                 const notes = JSON.parse(appSettings.getString('notes') || '[]')
                 notes[this.$route.params.index].author = this.author
