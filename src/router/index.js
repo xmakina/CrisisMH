@@ -22,6 +22,10 @@ import Types from '../components/types/Types'
 import ManageType from '../components/types/ManageType'
 import AddType from '../components/types/AddType'
 
+import StartCrisis from '../components/crisis/StartCrisis'
+import ManageCrisis from '../components/crisis/ManageCrisis'
+import CrisisContact from '../components/crisis/Contact'
+
 import ErrorPage from '../components/Error'
 
 const router = new VueRouter({
@@ -122,6 +126,27 @@ const router = new VueRouter({
       component: ManageType,
       meta: {
         title: 'Manage Type',
+      }
+    },
+    {
+      path: '/crisis',
+      component: StartCrisis,
+      meta: {
+        title: 'Start Crisis'
+      }
+    },
+    {
+      path: '/crisis/:index',
+      component: ManageCrisis,
+      meta: {
+        title: 'Manage Crisis'
+      }
+    },
+    {
+      path: '/crisis/:index/contact',
+      component: CrisisContact,
+      meta: {
+        title: 'Contact Somebody'
       }
     },
     {

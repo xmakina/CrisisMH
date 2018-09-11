@@ -3,6 +3,7 @@
     <ActionBar class="action-bar" title="Home" />
 
     <StackLayout>
+      <Button class="btn btn-primary" @tap="$router.push('/crisis')">I am in Crisis</Button>
       <Button class="btn" @tap="$router.push('/contacts')">Assistants</Button>
       <Button class="btn" @tap="$router.push('/notes')">Notes</Button>
       <Button class="btn" @tap="$router.push('/items')">Comfort Library</Button>

@@ -6,17 +6,16 @@
         <StackLayout class="details">
             <TextField v-model="name" hint="Name" />
             <TextField v-model="number" hint="Number" keyboardType="phone" />
-            <Button class="btn btn-primary" @tap="updateContact" text="Update assistant" />
-            <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove assistant" />
             <ListView for="(type, index) in allCrisisTypes">
                 <v-template>
                     <StackLayout class="details" orientation="horizontal">
-                        <Label :text="JSON.stringify(type)" />
-                        <Label :text="index" />
+                        <Label :text="type.title" />
                         <Switch :checked="included(index)" @tap="toggle(index)" />
                     </StackLayout>
                 </v-template>
             </ListView>
+            <Button class="btn btn-primary" @tap="updateContact" text="Update assistant" />
+            <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove assistant" />
         </StackLayout>
     </Page>
 </template>
@@ -74,7 +73,7 @@
 
             this.name = contact.name
             this.number = contact.number
-            this.crisisTypes = contact.crisisTypes
+            this.crisisTypes = contact.crisisTypes || []
         }
     }
 </script>
