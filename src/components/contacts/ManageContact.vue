@@ -6,14 +6,7 @@
         <StackLayout class="details">
             <TextField v-model="name" hint="Name" />
             <TextField v-model="number" hint="Number" keyboardType="phone" />
-            <ListView for="(type, index) in allCrisisTypes">
-                <v-template>
-                    <StackLayout class="details" orientation="horizontal">
-                        <Label :text="type.title" />
-                        <Switch :checked="included(index)" @tap="toggle(index)" />
-                    </StackLayout>
-                </v-template>
-            </ListView>
+            <CrisisTypes @toggle="toggle" :active-types="crisisTypes" />
             <Button class="btn btn-primary" @tap="updateContact" text="Update assistant" />
             <Button class="btn btn-danger" @tap="confirmRemoval" text="Remove assistant" />
         </StackLayout>
@@ -28,8 +21,7 @@
             return {
                 name: '',
                 number: '',
-                crisisTypes: [],
-                allCrisisTypes: []
+                crisisTypes: []
             }
         },
         methods: {
@@ -53,22 +45,17 @@
                     this.$router.push('/contacts')
                 }
             },
-            included(index) {
-                return this.crisisTypes.includes(index)
-            },
-            toggle(crisisTypeId) {
-                const index = this.crisisTypes.indexOf(crisisTypeId)
+            toggle(crisisTypeIndex) {
+                const index = this.crisisTypes.indexOf(crisisTypeIndex)
                 if(index > -1) {
                     this.crisisTypes.splice(index, 1)
                 } else {
-                    this.crisisTypes.push(crisisTypeId)
+                    this.crisisTypes.push(crisisTypeIndex)
                 }
             }
         },
         mounted() {
             const contacts = JSON.parse(appSettings.getString('contacts') || '[]')
-            this.allCrisisTypes = JSON.parse(appSettings.getString('types') || '[]')
-
             const contact = contacts[this.$route.params.index]
 
             this.name = contact.name

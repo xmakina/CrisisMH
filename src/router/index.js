@@ -25,6 +25,7 @@ import AddType from '../components/types/AddType'
 import StartCrisis from '../components/crisis/StartCrisis'
 import ManageCrisis from '../components/crisis/ManageCrisis'
 import CrisisContact from '../components/crisis/Contact'
+import CrisisLibrary from '../components/crisis/Library'
 
 import ErrorPage from '../components/Error'
 
@@ -147,6 +148,13 @@ const router = new VueRouter({
       component: CrisisContact,
       meta: {
         title: 'Contact Somebody'
+      }
+    },
+    {
+      path: '/crisis/:index/library',
+      component: CrisisLibrary,
+      meta: {
+        title: 'Comfort Library'
       }
     },
     {

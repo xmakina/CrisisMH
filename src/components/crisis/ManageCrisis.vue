@@ -4,6 +4,7 @@
         </ActionBar>
         <StackLayout>
             <Button @tap="goToContact" class="btn btn-primary">Contact Somebody</Button>
+            <Button @tap="goToLibrary" class="btn btn-primary">Comfort Library</Button>
             <Button @tap="goToHome" class="btn">End Crisis</Button>
         </StackLayout>
     </Page>
@@ -24,6 +25,9 @@
             },
             goToContact() {
                 this.$router.push('/crisis/' + this.crisisIndex + '/contact')
+            },
+            goToLibrary() {
+                this.$router.push('/crisis/' + this.crisisIndex + '/library')
             }
         },
         mounted() {

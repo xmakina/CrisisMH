@@ -1,9 +1,9 @@
 <template>
-    <ListView for="crisisType in crisisTypes" @itemTap="onItemTap">
+    <ListView for="(type, index) in allCrisisTypes">
         <v-template>
-            <StackLayout orientation="horizontal">
-                <Label :text="crisisType.title" />
-                <Switch v-model="crisisType.active" />
+            <StackLayout class="details" orientation="horizontal">
+                <Label :text="type.title" />
+                <Switch :checked="included(index)" @tap="toggle(index)" />
             </StackLayout>
         </v-template>
     </ListView>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    props: ['value'],
+    props: ['active-types'],
     data() {
         return {
             crisisTypes: []
@@ -23,18 +23,16 @@ export default {
         },
         onItemTap(event) {
             event.item.active = !event.item.active
+        },
+        included(index) {
+            return this.activeTypes.includes(index)
+        },
+        toggle(index) {
+            this.$emit('toggle', index)
         }
     },
     mounted() {
         this.crisisTypes = JSON.parse(appSettings.getString('crisisTypes') || '[]')
-        for(const valueIndex in this.value){
-            for(const typeIndex in this.crisisTypes) {
-                if(this.value[valueIndex].title === this.crisisTypes[typeIndex].title){
-                    this.crisisTypes[typeIndex].active = true
-                    break
-                }
-            }
-        }
     }
 }
 </script>
